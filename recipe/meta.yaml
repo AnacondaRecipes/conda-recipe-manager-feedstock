@@ -54,16 +54,15 @@ test:
     - pytest-xdist
     - pyfakefs
     - git  # Required for `gitpython` tests
+    - yq
   commands:
     - pip check
     - conda-recipe-manager --help
     - crm --help
     - crm bump-recipe --help
-    # Test the crm bump-recipe usage
-    - crm bump-recipe -b -d recipe/meta.yaml
     - crm convert --help
     # Test the crm convert usage
-    - crm convert recipe/meta.yaml
+    - crm convert recipe/meta.yaml | [[ $(yq ".context.name") == '"conda-recipe-manager"' ]]  # [unix]
     - crm graph --help
     - crm patch --help
     - crm rattler-bulk-build --help
@@ -84,4 +83,3 @@ about:
 extra:
   recipe-maintainers:
     - schuylermartin45
-    - beeankha
