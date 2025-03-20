@@ -1,5 +1,5 @@
 {% set name = "conda-recipe-manager" %}
-{% set version = "0.4.1" %}
+{% set version = "0.4.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/conda-incubator/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 40071212e6838117d1d0cba3c0897a9fbd8541440bb789ee8fa430715bf63df7
+  sha256: 00ac7d36d2d63d7afa9be1b6f1c75f6340747b72fa143c0e5216427e06ddd633
 
 build:
   number: 0
@@ -62,7 +62,7 @@ test:
     - crm bump-recipe --help
     - crm convert --help
     # Test the crm convert usage
-    - crm convert recipe/meta.yaml | [[ $(yq ".context.name") == '"conda-recipe-manager"' ]]  # [unix]
+    - "crm convert recipe/meta.yaml | [[ $(yq \".context.name\") == '\"conda-recipe-manager\"' ]]"  # [unix]
     - crm graph --help
     - crm patch --help
     - crm rattler-bulk-build --help
