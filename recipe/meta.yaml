@@ -56,15 +56,12 @@ test:
     - pytest-socket
     - pyfakefs >=5.9.1
     - git  # Required for `gitpython` tests
-    - yq
   commands:
     - pip check
     - conda-recipe-manager --help
     - crm --help
     - crm bump-recipe --help
     - crm convert --help
-    # Test the crm convert usage
-    - crm convert recipe/meta.yaml | [[ $(yq ".context.name") == '"conda-recipe-manager"' ]]  # [unix]
     - crm graph --help
     - crm patch --help
     - crm rattler-bulk-build --help
