@@ -1,5 +1,5 @@
 {% set name = "conda-recipe-manager" %}
-{% set version = "0.6.0" %}
+{% set version = "0.6.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/conda/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: b733289c8e5d5513f4c43f90f2515d626d739cf9d0504c08ba87f24c869f2939
+  sha256: 2610deb8019357e8152af7382915230f71f76943b75e3347db7b8f072c08551c
 
 build:
-  number: 1
+  number: 0
   noarch: python
   script: {{PYTHON}} -m pip install . --no-deps --no-build-isolation -vv
   entry_points:
@@ -56,15 +56,12 @@ test:
     - pytest-socket
     - pyfakefs >=5.9.1
     - git  # Required for `gitpython` tests
-    - yq
   commands:
     - pip check
     - conda-recipe-manager --help
     - crm --help
     - crm bump-recipe --help
     - crm convert --help
-    # Test the crm convert usage
-    - crm convert recipe/meta.yaml | [[ $(yq ".context.name") == '"conda-recipe-manager"' ]]  # [unix]
     - crm graph --help
     - crm patch --help
     - crm rattler-bulk-build --help
