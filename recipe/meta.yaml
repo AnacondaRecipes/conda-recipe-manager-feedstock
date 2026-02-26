@@ -1,5 +1,5 @@
 {% set name = "conda-recipe-manager" %}
-{% set version = "0.9.3" %}
+{% set version = "0.10.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/conda/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 913905525358fd2c6055b19c9d548810944672e49b4a67a5a38e975b660b9b7d 
+  sha256: 6ee5168fac5a629d1a8c626f6910d02381e4dea0adc1728b0d88eff6b30e9d19
 
 build:
   number: 0
@@ -25,23 +25,19 @@ requirements:
     - wheel
   run:
     - python >=3.11
-    - click >=8.1.7,<8.2.0
+    - click ==8.2.1
     - conda
     - jinja2
     - pyyaml
     - jsonschema
     - requests
     - gitpython
-    - networkx
-    - matplotlib-base
-    - pygraphviz
     - evalidate >=2.0.3,<3.0.0
 
 test:
   imports:
     - conda_recipe_manager.commands
     - conda_recipe_manager.fetcher
-    - conda_recipe_manager.grapher
     - conda_recipe_manager.licenses
     - conda_recipe_manager.parser
     - conda_recipe_manager.scanner
@@ -54,8 +50,8 @@ test:
     - pip
     - pytest
     - pytest-xdist
-    - pytest-socket
-    - pyfakefs >=5.9.1
+    - pytest-socket >=0.7.0
+    - pyfakefs >=6.0.0
     - git  # Required for `gitpython` tests
   commands:
     - pip check
@@ -63,7 +59,6 @@ test:
     - crm --help
     - crm bump-recipe --help
     - crm convert --help
-    - crm graph --help
     - crm patch --help
     - crm rattler-bulk-build --help
     - python -m pytest -n auto --ignore=tests/test_aux_files tests/
@@ -84,3 +79,5 @@ extra:
     - avoid_noarch
   recipe-maintainers:
     - schuylermartin45
+    - msentissi
+    - leahsch
