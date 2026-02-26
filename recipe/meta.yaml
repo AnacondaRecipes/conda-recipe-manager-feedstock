@@ -38,7 +38,6 @@ test:
   imports:
     - conda_recipe_manager.commands
     - conda_recipe_manager.fetcher
-    - conda_recipe_manager.grapher
     - conda_recipe_manager.licenses
     - conda_recipe_manager.parser
     - conda_recipe_manager.scanner
@@ -60,7 +59,6 @@ test:
     - crm --help
     - crm bump-recipe --help
     - crm convert --help
-    - crm graph --help
     - crm patch --help
     - crm rattler-bulk-build --help
     - python -m pytest -n auto --ignore=tests/test_aux_files tests/
